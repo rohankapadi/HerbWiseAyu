@@ -1,12 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState } from 'react';
+import Navigation from '@/components/Navigation';
+import Hero from '@/components/Hero';
+import Chat from '@/components/Chat';
+import MoodTracker from '@/components/MoodTracker';
+import { Card } from '@/components/ui/card';
 
 const Index = () => {
+  const [currentView, setCurrentView] = useState<'home' | 'chat' | 'mood'>('home');
+
+  const handleStartChat = () => {
+    setCurrentView('chat');
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Navigation currentView={currentView} onViewChange={setCurrentView} />
+      
+      {currentView === 'home' && <Hero onStartChat={handleStartChat} />}
+      
+      {currentView === 'chat' && (
+        <div className="pt-20 pb-8 min-h-screen bg-gradient-peaceful">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <Card className="h-[600px] bg-card/80 backdrop-blur-sm shadow-soft">
+              <Chat />
+            </Card>
+          </div>
+        </div>
+      )}
+      
+      {currentView === 'mood' && <MoodTracker />}
     </div>
   );
 };
