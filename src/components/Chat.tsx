@@ -11,16 +11,7 @@ interface Message {
   timestamp: Date;
 }
 
-const therapyResponses = [
-  "I hear you, and what you're sharing takes courage. How are you feeling right now after expressing that?",
-  "Thank you for trusting me with these thoughts. It sounds like you're going through something meaningful. Would you like to explore this feeling a bit more?",
-  "Your feelings are completely valid. Sometimes just putting our thoughts into words can be incredibly healing. What would feel most supportive for you right now?",
-  "I appreciate you opening up. It takes strength to acknowledge difficult emotions. What do you think might help you process what you're experiencing?",
-  "What you're sharing resonates deeply. Many people experience similar feelings, and you're not alone in this. How long have you been carrying these thoughts?",
-  "Thank you for being so honest with me. Your emotional awareness shows real growth. What would you like to focus on moving forward?",
-  "I can sense the weight of what you're sharing. Sometimes talking through our experiences helps us understand them better. What feels most important to address right now?",
-  "Your insights about yourself show remarkable self-awareness. How do you typically cope when these feelings arise?",
-];
+const WEBHOOK_URL = 'https://rohan-kapadi.app.n8n.cloud/webhook-test/message';
 
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
@@ -54,12 +45,26 @@ const Chat = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const messageText = inputText;
     setInputText('');
     setIsTyping(true);
 
-    // Simulate typing delay
-    setTimeout(() => {
-      const responseText = therapyResponses[Math.floor(Math.random() * therapyResponses.length)];
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: messageText,
+          timestamp: new Date().toISOString(),
+          userId: 'anonymous'
+        }),
+      });
+
+      const data = await response.json();
+      const responseText = data.response || data.message || "I'm here to listen and support you through this.";
+      
       const botMessage: Message = {
         id: Date.now() + 1,
         text: responseText,
@@ -67,8 +72,18 @@ const Chat = () => {
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Webhook error:', error);
+      const fallbackMessage: Message = {
+        id: Date.now() + 1,
+        text: "I'm experiencing some technical difficulties, but I'm still here for you. Please try again in a moment.",
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, fallbackMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
