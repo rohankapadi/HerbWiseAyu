@@ -50,8 +50,6 @@ const Chat = () => {
     setIsTyping(true);
 
     try {
-      console.log('Sending message to webhook:', messageText);
-      
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
@@ -64,16 +62,8 @@ const Chat = () => {
         }),
       });
 
-      console.log('Webhook response status:', response.status);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
       const data = await response.json();
-      console.log('Webhook response data:', data);
-      
-      const responseText = data.response || data.message || data.text || "I'm here to listen and support you through this.";
+      const responseText = data.response || data.message || "I'm here to listen and support you through this.";
       
       const botMessage: Message = {
         id: Date.now() + 1,
@@ -86,7 +76,7 @@ const Chat = () => {
       console.error('Webhook error:', error);
       const fallbackMessage: Message = {
         id: Date.now() + 1,
-        text: `Connection issue: ${error instanceof Error ? error.message : 'Unknown error'}. Please check your n8n webhook CORS settings and ensure it's accessible.`,
+        text: "I'm experiencing some technical difficulties, but I'm still here for you. Please try again in a moment.",
         isUser: false,
         timestamp: new Date(),
       };
