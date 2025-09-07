@@ -105,7 +105,36 @@ const Chat = () => {
       }
       
       console.log('Parsed webhook data:', data);
-      const botResponseText = data.response || data.message || data.reply || data.output || "I'm here to listen and support you through this.";
+      
+      const extractText = (val: any): string | null => {
+        if (!val && val !== 0) return null;
+        if (typeof val === 'string') return val;
+        if (typeof val === 'number' || typeof val === 'boolean') return String(val);
+        if (Array.isArray(val)) {
+          for (const item of val) {
+            const found = extractText(item);
+            if (found) return found;
+          }
+          return null;
+        }
+        if (typeof val === 'object') {
+          const anyVal: any = val as any;
+          const direct = anyVal.response || anyVal.message || anyVal.reply || anyVal.output || anyVal.text || anyVal.content || null;
+          if (typeof direct === 'string') return direct;
+          if (direct) {
+            const found = extractText(direct);
+            if (found) return found;
+          }
+          for (const k of Object.keys(anyVal)) {
+            const found = extractText(anyVal[k]);
+            if (found) return found;
+          }
+        }
+        return null;
+      };
+      
+      const fallback = "I'm here to listen and support you through this.";
+      const botResponseText = extractText(data) || (responseText && responseText.trim() ? responseText : fallback);
       
       const botMessage: Message = {
         id: Date.now() + 1,
