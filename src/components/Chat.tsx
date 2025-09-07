@@ -134,7 +134,13 @@ const Chat = () => {
       };
       
       const fallback = "I'm here to listen and support you through this.";
-      const botResponseText = extractText(data) || (responseText && responseText.trim() ? responseText : fallback);
+      const rawText = extractText(data) || (responseText && responseText.trim() ? responseText : fallback);
+      
+      // Format the text for better display
+      const botResponseText = rawText
+        .replace(/\n\n/g, '\n') // Convert double newlines to single
+        .replace(/\*\s+/g, '• ') // Convert markdown bullets to proper bullets
+        .trim();
       
       const botMessage: Message = {
         id: Date.now() + 1,
@@ -185,7 +191,9 @@ const Chat = () => {
                   <span className="text-sm font-medium">Wellness Companion</span>
                 </div>
               )}
-              <p className="text-sm leading-relaxed">{message.text}</p>
+              <div className="text-sm leading-relaxed whitespace-pre-line">
+                {message.text}
+              </div>
               <div className="mt-2 text-xs opacity-70">
                 {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </div>
