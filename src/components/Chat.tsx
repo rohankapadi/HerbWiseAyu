@@ -79,12 +79,14 @@ const Chat = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Session-Id': uid,
         },
         body: JSON.stringify({
           messageId,
           message: messageText,
           timestamp: new Date().toISOString(),
-          userId: uid
+          userId: uid,
+          sessionId: uid,
         }),
       });
 
