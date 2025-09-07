@@ -11,7 +11,7 @@ interface Message {
   timestamp: Date;
 }
 
-const WEBHOOK_URL = 'https://rohan-kapadi.app.n8n.cloud/webhook-test/message';
+const WEBHOOK_URL = 'https://rohan-kapadi.app.n8n.cloud/webhook/message';
 
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
