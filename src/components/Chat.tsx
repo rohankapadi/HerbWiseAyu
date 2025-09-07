@@ -24,6 +24,7 @@ const Chat = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [userId, setUserId] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -33,6 +34,19 @@ const Chat = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('chatUserId');
+    if (saved) {
+      setUserId(saved);
+    } else {
+      const generated = (crypto && 'randomUUID' in crypto && typeof crypto.randomUUID === 'function')
+        ? crypto.randomUUID()
+        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      localStorage.setItem('chatUserId', generated);
+      setUserId(generated);
+    }
+  }, []);
 
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
@@ -49,6 +63,17 @@ const Chat = () => {
     setInputText('');
     setIsTyping(true);
 
+    const uid = userId || localStorage.getItem('chatUserId') || ((crypto && 'randomUUID' in crypto && typeof crypto.randomUUID === 'function')
+      ? crypto.randomUUID()
+      : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`);
+    if (!userId) {
+      localStorage.setItem('chatUserId', uid);
+      setUserId(uid);
+    }
+    const messageId = (crypto && 'randomUUID' in crypto && typeof crypto.randomUUID === 'function')
+      ? crypto.randomUUID()
+      : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+
     try {
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
@@ -56,9 +81,10 @@ const Chat = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          messageId,
           message: messageText,
           timestamp: new Date().toISOString(),
-          userId: 'anonymous'
+          userId: uid
         }),
       });
 
