@@ -90,12 +90,26 @@ const Chat = () => {
         }),
       });
 
-      const data = await response.json();
-      const responseText = data.response || data.message || "I'm here to listen and support you through this.";
+      console.log('Webhook response status:', response.status);
+      console.log('Webhook response headers:', response.headers);
+      
+      const responseText = await response.text();
+      console.log('Raw webhook response:', responseText);
+      
+      let data;
+      try {
+        data = responseText ? JSON.parse(responseText) : {};
+      } catch (parseError) {
+        console.error('JSON parse error:', parseError);
+        data = {};
+      }
+      
+      console.log('Parsed webhook data:', data);
+      const botResponseText = data.response || data.message || data.reply || data.output || "I'm here to listen and support you through this.";
       
       const botMessage: Message = {
         id: Date.now() + 1,
-        text: responseText,
+        text: botResponseText,
         isUser: false,
         timestamp: new Date(),
       };
