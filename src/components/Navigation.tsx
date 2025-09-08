@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, Home, MessageCircle, BarChart3 } from 'lucide-react';
+import { Leaf, Home, MessageCircle, Calendar, HelpCircle } from 'lucide-react';
 
 interface NavigationProps {
-  currentView: 'home' | 'chat' | 'mood';
-  onViewChange: (view: 'home' | 'chat' | 'mood') => void;
+  currentView: 'home' | 'chat' | 'seasonal' | 'faq';
+  onViewChange: (view: 'home' | 'chat' | 'seasonal' | 'faq') => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ currentView, onViewChange }) => {
@@ -13,13 +13,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onViewChange }) =>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <Heart className="h-6 w-6 text-primary" />
-            <span className="text-xl font-semibold text-foreground">MindfulSpace</span>
+            <Leaf className="h-6 w-6 text-green-600" />
+            <span className="text-xl font-semibold text-green-800">HerbWiseAyu</span>
           </div>
           
           <div className="flex items-center gap-2">
             <Button
-              variant={currentView === 'home' ? 'wellness' : 'ghost'}
+              variant={currentView === 'home' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => onViewChange('home')}
               className="text-sm"
@@ -28,22 +28,31 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onViewChange }) =>
               Home
             </Button>
             <Button
-              variant={currentView === 'chat' ? 'wellness' : 'ghost'}
+              variant={currentView === 'chat' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => onViewChange('chat')}
               className="text-sm"
             >
               <MessageCircle className="mr-1 h-4 w-4" />
-              Chat
+              Remedy Chat
             </Button>
             <Button
-              variant={currentView === 'mood' ? 'wellness' : 'ghost'}
+              variant={currentView === 'seasonal' ? 'default' : 'ghost'}
               size="sm"
-              onClick={() => onViewChange('mood')}
+              onClick={() => onViewChange('seasonal')}
               className="text-sm"
             >
-              <BarChart3 className="mr-1 h-4 w-4" />
-              Mood
+              <Calendar className="mr-1 h-4 w-4" />
+              Seasonal Guide
+            </Button>
+            <Button
+              variant={currentView === 'faq' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => onViewChange('faq')}
+              className="text-sm"
+            >
+              <HelpCircle className="mr-1 h-4 w-4" />
+              FAQ
             </Button>
           </div>
         </div>

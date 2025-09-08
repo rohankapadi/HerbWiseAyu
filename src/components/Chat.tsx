@@ -17,7 +17,7 @@ const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hello, I'm here to listen and support you. This is a safe space where you can share whatever is on your mind without judgment. How are you feeling today?",
+      text: "🌿 Namaste! I'm your Ayurvedic wellness companion. I can help you discover natural herbal remedies for common ailments. Share your symptoms or health concerns, and I'll suggest traditional Ayurvedic herbs and practices that may help. What brings you here today?",
       isUser: false,
       timestamp: new Date(),
     },
@@ -186,9 +186,9 @@ const Chat = () => {
               }`}
             >
               {!message.isUser && (
-                <div className="flex items-center gap-2 mb-2 text-primary">
-                  <Heart className="h-4 w-4" />
-                  <span className="text-sm font-medium">Wellness Companion</span>
+                <div className="flex items-center gap-2 mb-2 text-green-700">
+                  <Sparkles className="h-4 w-4" />
+                  <span className="text-sm font-medium">HerbWise Ayu</span>
                 </div>
               )}
               <div className="text-sm leading-relaxed whitespace-pre-line">
@@ -203,14 +203,14 @@ const Chat = () => {
         
         {isTyping && (
           <div className="flex justify-start">
-            <Card className="max-w-[80%] p-4 bg-card text-card-foreground border-primary-soft shadow-soft">
-              <div className="flex items-center gap-2 mb-2 text-primary">
-                <Heart className="h-4 w-4" />
-                <span className="text-sm font-medium">Wellness Companion</span>
+            <Card className="max-w-[80%] p-4 bg-card text-card-foreground border-green-200 shadow-soft">
+              <div className="flex items-center gap-2 mb-2 text-green-700">
+                <Sparkles className="h-4 w-4" />
+                <span className="text-sm font-medium">HerbWise Ayu</span>
               </div>
               <div className="flex items-center gap-1">
-                <Sparkles className="h-3 w-3 animate-pulse text-primary" />
-                <span className="text-sm text-muted-foreground">Thinking...</span>
+                <Sparkles className="h-3 w-3 animate-pulse text-green-600" />
+                <span className="text-sm text-muted-foreground">Searching ancient wisdom...</span>
               </div>
             </Card>
           </div>
@@ -225,8 +225,8 @@ const Chat = () => {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Share what's on your mind... I'm here to listen"
-            className="flex-1 bg-background border-primary-soft focus:border-primary"
+            placeholder="Describe your symptoms or health concerns..."
+            className="flex-1 bg-background border-green-200 focus:border-green-500"
             disabled={isTyping}
           />
           <Button
@@ -239,8 +239,9 @@ const Chat = () => {
             <Send className="h-4 w-4" />
           </Button>
         </div>
-        <p className="text-xs text-muted-foreground mt-2 text-center">
-          This is a supportive space for reflection. For immediate help, please contact a mental health professional.
+        <p className="text-xs text-amber-700 mt-2 text-center bg-amber-50 p-2 rounded border border-amber-200">
+          ⚠️ This information is for awareness only and is not a substitute for medical advice. 
+          Please consult with a qualified healthcare provider for serious health concerns.
         </p>
       </div>
     </div>

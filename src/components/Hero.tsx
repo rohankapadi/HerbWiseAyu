@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Heart, Shield, MessageCircle, Users } from 'lucide-react';
+import { Leaf, Shield, MessageCircle, Calendar, Sparkles } from 'lucide-react';
 import heroImage from '@/assets/hero-peaceful.jpg';
 
 interface HeroProps {
@@ -11,8 +11,8 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onStartChat }) => {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Background with peaceful gradient */}
-      <div className="absolute inset-0 bg-gradient-peaceful" />
+      {/* Background with Ayurvedic gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-yellow-50" />
       
       {/* Hero image overlay */}
       <div className="absolute inset-0 opacity-20">
@@ -27,69 +27,69 @@ const Hero: React.FC<HeroProps> = ({ onStartChat }) => {
       <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
-            <Heart className="h-16 w-16 text-primary mx-auto mb-4 drop-shadow-sm" />
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground leading-tight">
-              Your Safe Space for
-              <span className="text-primary block">Mental Wellness</span>
+            <Leaf className="h-16 w-16 text-green-600 mx-auto mb-4 drop-shadow-sm" />
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-green-800 leading-tight">
+              Discover Ancient 
+              <span className="text-green-600 block">Ayurvedic Wisdom</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-              Express your feelings, share your thoughts, and find comfort in judgment-free conversations. 
-              Your emotional well-being matters, and you're never alone.
+            <p className="text-xl md:text-2xl text-green-700 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Unlock 5,000 years of natural healing knowledge. Find herbal remedies, seasonal wellness guides, 
+              and traditional Ayurvedic solutions for common ailments.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Button 
-              variant="wellness" 
+              variant="default" 
               size="lg" 
               onClick={onStartChat}
-              className="text-lg px-8 py-4 shadow-soft hover:shadow-glow transition-all duration-300"
+              className="text-lg px-8 py-4 bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <MessageCircle className="mr-2 h-5 w-5" />
-              Start a Conversation
+              Get Herbal Remedies
             </Button>
             <Button 
-              variant="gentle" 
+              variant="outline" 
               size="lg"
-              className="text-lg px-8 py-4"
+              className="text-lg px-8 py-4 border-green-600 text-green-600 hover:bg-green-50"
             >
-              <Shield className="mr-2 h-5 w-5" />
-              Learn About Privacy
+              <Sparkles className="mr-2 h-5 w-5" />
+              Explore Wisdom
             </Button>
           </div>
 
           {/* Feature cards */}
           <div className="grid md:grid-cols-3 gap-6 mt-16">
-            <Card className="p-6 bg-card/80 backdrop-blur-sm border-primary-soft shadow-soft hover:shadow-glow transition-all duration-300">
-              <Heart className="h-8 w-8 text-primary mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold mb-2 text-card-foreground">Compassionate Listening</h3>
-              <p className="text-muted-foreground text-sm">
-                Share your emotions and experiences in a supportive environment designed for healing.
+            <Card className="p-6 bg-white/80 backdrop-blur-sm border-green-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <MessageCircle className="h-8 w-8 text-green-600 mb-4 mx-auto" />
+              <h3 className="text-lg font-semibold mb-2 text-green-800">AI Herbal Guidance</h3>
+              <p className="text-green-600 text-sm">
+                Get personalized Ayurvedic remedy suggestions based on your symptoms and constitution.
               </p>
             </Card>
 
-            <Card className="p-6 bg-card/80 backdrop-blur-sm border-primary-soft shadow-soft hover:shadow-glow transition-all duration-300">
-              <Shield className="h-8 w-8 text-primary mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold mb-2 text-card-foreground">Complete Privacy</h3>
-              <p className="text-muted-foreground text-sm">
-                Your conversations are private and secure. Express yourself freely without worry.
+            <Card className="p-6 bg-white/80 backdrop-blur-sm border-green-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Calendar className="h-8 w-8 text-green-600 mb-4 mx-auto" />
+              <h3 className="text-lg font-semibold mb-2 text-green-800">Seasonal Wellness</h3>
+              <p className="text-green-600 text-sm">
+                Discover seasonal Ayurvedic practices, herbs, and lifestyle tips for year-round health.
               </p>
             </Card>
 
-            <Card className="p-6 bg-card/80 backdrop-blur-sm border-primary-soft shadow-soft hover:shadow-glow transition-all duration-300">
-              <Users className="h-8 w-8 text-primary mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold mb-2 text-card-foreground">Always Available</h3>
-              <p className="text-muted-foreground text-sm">
-                24/7 support when you need someone to listen, whether it's day or night.
+            <Card className="p-6 bg-white/80 backdrop-blur-sm border-green-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Leaf className="h-8 w-8 text-green-600 mb-4 mx-auto" />
+              <h3 className="text-lg font-semibold mb-2 text-green-800">Ancient Knowledge</h3>
+              <p className="text-green-600 text-sm">
+                Access 5,000 years of traditional Ayurvedic wisdom for natural healing and wellness.
               </p>
             </Card>
           </div>
 
-          <div className="mt-16 p-6 bg-accent-soft/50 rounded-2xl border border-accent backdrop-blur-sm">
-            <p className="text-accent-foreground text-sm leading-relaxed">
-              <strong>Important:</strong> This platform provides emotional support and a space for reflection. 
-              If you're experiencing a mental health crisis, please reach out to a qualified mental health professional 
-              or contact your local crisis helpline immediately.
+          <div className="mt-16 p-6 bg-amber-50 rounded-2xl border border-amber-200 backdrop-blur-sm">
+            <p className="text-amber-800 text-sm leading-relaxed">
+              <strong>⚠️ Medical Disclaimer:</strong> This platform provides educational information about traditional Ayurvedic practices. 
+              The content is not intended as medical advice. Always consult with qualified healthcare professionals 
+              before starting any new treatment or making significant health changes.
             </p>
           </div>
         </div>

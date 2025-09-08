@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Chat from '@/components/Chat';
-import MoodTracker from '@/components/MoodTracker';
+import SeasonalGuide from '@/components/SeasonalGuide';
+import AyurvedaFAQ from '@/components/AyurvedaFAQ';
 import { Card } from '@/components/ui/card';
 
 const Index = () => {
-  const [currentView, setCurrentView] = useState<'home' | 'chat' | 'mood'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'chat' | 'seasonal' | 'faq'>('home');
 
   const handleStartChat = () => {
     setCurrentView('chat');
@@ -28,7 +29,9 @@ const Index = () => {
         </div>
       )}
       
-      {currentView === 'mood' && <MoodTracker />}
+      {currentView === 'seasonal' && <SeasonalGuide />}
+      
+      {currentView === 'faq' && <AyurvedaFAQ />}
     </div>
   );
 };
