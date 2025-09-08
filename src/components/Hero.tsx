@@ -6,9 +6,10 @@ import heroImage from '@/assets/hero-peaceful.jpg';
 
 interface HeroProps {
   onStartChat: () => void;
+  onNavigateToSeasonal: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onStartChat }) => {
+const Hero: React.FC<HeroProps> = ({ onStartChat, onNavigateToSeasonal }) => {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background with Ayurvedic gradient */}
@@ -51,10 +52,11 @@ const Hero: React.FC<HeroProps> = ({ onStartChat }) => {
             <Button 
               variant="outline" 
               size="lg"
+              onClick={onNavigateToSeasonal}
               className="text-lg px-8 py-4 border-green-600 text-green-600 hover:bg-green-50"
             >
-              <Sparkles className="mr-2 h-5 w-5" />
-              Explore Wisdom
+              <Calendar className="mr-2 h-5 w-5" />
+              Explore Seasonal Guide
             </Button>
           </div>
 

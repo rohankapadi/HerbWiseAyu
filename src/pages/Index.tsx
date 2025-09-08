@@ -13,11 +13,15 @@ const Index = () => {
     setCurrentView('chat');
   };
 
+  const handleNavigateToSeasonal = () => {
+    setCurrentView('seasonal');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation currentView={currentView} onViewChange={setCurrentView} />
       
-      {currentView === 'home' && <Hero onStartChat={handleStartChat} />}
+      {currentView === 'home' && <Hero onStartChat={handleStartChat} onNavigateToSeasonal={handleNavigateToSeasonal} />}
       
       {currentView === 'chat' && (
         <div className="pt-20 pb-8 min-h-screen bg-gradient-peaceful">

@@ -1,16 +1,10 @@
-# Welcome to your Lovable project
-
-## Project info
-
-**URL**: https://lovable.dev/projects/757382dd-7117-4bba-91f0-5987c6c3af78
-
-## How can I edit this code?
+<!-- ## How can I edit this code?
 
 There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/757382dd-7117-4bba-91f0-5987c6c3af78) and start prompting.
+Simply visit the [Lovable Project](https://lovable.dev/projects/76b2f41c-eec5-4678-9cda-0e4bd0901d3b) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -50,24 +44,60 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+## Getting Started
 
-This project is built with:
+1. Clone the repository.
+2. Follow the setup instructions in the project documentation.
+3. Run the application and start searching for remedies.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Team Members
 
-## How can I deploy this project?
+- Add team member names here.
 
-Simply open [Lovable](https://lovable.dev/projects/757382dd-7117-4bba-91f0-5987c6c3af78) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+**Disclaimer:**  
+This application is intended for general awareness and educational purposes only. It does not provide medical advice, diagnosis, or treatment. Please consult a qualified healthcare professional for -->
 
-Yes, you can!
+# HerbWiseAyu
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Overview
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+**HerbWiseAyu** is a web-based Herbal Remedy Finder designed to help users discover traditional Ayurvedic herbs and formulations for common, non-serious ailments. Leveraging ancient wisdom and modern technology, HerbWiseAyu provides an easy-to-use search or chat interface that suggests remedies based on user input.
+
+---
+
+## Problem Statement
+
+**Herbal Remedy Finder for Common Ailments**
+
+Design a simple search engine or chatbot that can suggest common Ayurvedic herbal remedies for a given ailment. The user can input a common, non-serious ailment like "cold", "headache", or "indigestion", and the system will return a list of traditional Ayurvedic herbs or formulations known to help with that condition.
+
+- **Input:** User types an ailment in plain language.
+- **Logic:** Keyword-matching or basic NLP trained on Ayurvedic texts.
+- **Output:** List of Ayurvedic herbs/formulations for that ailment.
+- **Interface:** Easy-to-use search/chat interface.
+
+---
+
+## Features
+
+- 🔍 **Search or Chat Interface:** Enter your ailment and get instant suggestions.
+- 🌿 **Ayurvedic Wisdom:** Remedies based on traditional Ayurvedic texts.
+- 🤖 **AI-Powered:** Uses keyword matching or basic NLP for recommendations.
+- ⚡ **Fast & Simple:** Designed for quick, user-friendly access.
+
+---
+
+## Team Members
+
+- Rohan Kapadi
+- Swaraj Karle
+- Kanushri Soni
+- Janhvesh Patil
+
+---
+
+## Disclaimer
+
+This application is intended for general awareness and educational purposes only. It does not provide medical advice, diagnosis, or treatment. Please consult a qualified healthcare professional for any health concerns or before starting any herbal remedies. The information provided is not a substitute for professional medical advice.
